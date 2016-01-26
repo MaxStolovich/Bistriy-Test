@@ -74,12 +74,13 @@
 					</tr>
 				</thead>
 				<tbody>
+					{% for student in students %}
 					<tr>
-						<td>1</td>
+						<td>{{ forloop.counter }}</td>
 						<td><img class="img-circle" src={% static "images/dog.jpeg" %} height="35"width="35"/></td>
-						<td><a href={% url "students_edit" 1 %}>Сидур</td>
-						<td><a href={% url "students_edit" 1 %}>Вадим</td>
-						<td>2123</td>
+						<td><a href={% url "students_edit" 1 %}>{{ student.last_name }}</td>
+						<td><a href={% url "students_edit" 1 %}>{{ student.first_name }}</td>
+						<td>{{ student.ticket }}</td>
 						<td>
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
@@ -87,93 +88,14 @@
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="journal/1">Посещения</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href={% url "students_edit" 1 %}>Редактировать</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href={% url "students_delete" 1 %}>Удалить</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="journal/{{ student.id }}">Посещения</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href={% url "students_edit" student.id %}>Редактировать</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href={% url "students_delete" student.id %}>Удалить</a></li>
 								</ul>
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td><img class="img-circle" src={% static "images/dog2.jpeg" %} height="35" width="35" /></td>
-						<td><a href="/students/2/edit">Романов </td>
-						<td><a href="/students/2/edit">Александр</td>
-						<td>254</td>
-						<td>
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-									Действия
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="journal/2">Посещения</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/students/2/edit">Редактировать</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/students/2/delete">Удалить</a></li>
-								</ul>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td><img class="img-circle" src={% static "images/sepia.jpeg" %} height="35" width="35" /></td>
-						<td><a href="/students/3/edit">Хрущ</td>
-						<td><a href="/students/3/edit">Артем</td>
-						<td>5332</td>
-						<td>
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-									Действия
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="journal/3">Посещения</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/students/3/edit">Редактировать</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/students/3/delete">Удалить</a></li>
-								</ul>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td><img class="img-circle" src={% static "images/bird.jpeg" %} height="35" width="35" /></td>
-						<td><a href="/students/4/edit">Невик</td>
-						<td><a href="/students/4/edit">Виктор</td>
-						<td>3312</td>
-						<td>
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-									Действия
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="journal/4">Посещения</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/students/4/edit">Редактировать</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/students/4/delete">Удалить</a></li>
-								</ul>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td><img class="img-circle" src={% static "images/cat.jpeg" %} height="35" width="35" /></td>
-						<td><a href="/students/5/edit">Кудрик</td>
-						<td><a href="/students/5/edit">Екатерина</td>
-						<td>303</td>
-						<td>
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-									Действия
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="journal/5">Посещения</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/students/5/edit">Редактировать</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="/students/5/delete">Удалить</a></li>
-								</ul>
-							</div>
-						</td>
-					</tr>
+					{% endfor %}
 				</tbody>
 			</table>
 			<ul class="pagination">
