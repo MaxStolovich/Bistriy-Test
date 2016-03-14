@@ -8,7 +8,7 @@
     <title> Сервис учета студентов - {% block meta_title %}{% endblock meta_title %} </title>
     <meta name="description" value="Система учета студентов учебного заведения"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href={% static "css/main.css" %}>
+	<link rel="stylesheet" href="{{ PORTAL_URL }}{% static "css/main.css" %}">
 	{% block extra_css %} {% endblock extra_css %}
 </head>
 
@@ -42,9 +42,9 @@
     <div class="row" id="sub-header"> 
 		<div class="col-xs-12">
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href={% url "home" %}>Студенты</a></li>
-				<li role="presentation"><a href="/journal">Посещения</a></li>
-				<li role="presentation"><a href={% url "groups" %}>Группы</a></li>
+				<li role="presentation" {% if request.path == '/' %} class="active" {% endif %}><a href={% url "home" %}>Студенты</a></li>
+				<li role="presentation" {% if '/journal' in request.path %} class="active" {% endif %}><a href="/journal">Посещения</a></li>
+				<li role="presentation" {% if '/groups' in request.path %} class="active" {% endif %}><a href={% url "groups" %}>Группы</a></li>
 			</ul>
 		</div>
     </div>
